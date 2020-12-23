@@ -1,6 +1,7 @@
 class Api::V1::AuthController < ApplicationController
     skip_before_action :authorized, only: [:create]
   
+    # login functionality from backend
     def create
       @user = User.find_by(email: user_login_params[:email])
       # User#authenticate comes from BCrypt

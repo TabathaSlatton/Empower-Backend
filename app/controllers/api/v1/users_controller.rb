@@ -1,6 +1,13 @@
 class Api::V1::UsersController < ApplicationController
     skip_before_action :authorized, only: [:create]
 
+
+    # allows authenticated user to access profile information
+    def profile
+        render json: { user: UserSerializer.new(current_user) }, status: :accepted
+    end
+
+    # signing up
     def create
       @user = User.create(user_params)
       if @user.valid?
