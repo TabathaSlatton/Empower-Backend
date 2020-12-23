@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  product: one
+  completed: false
+  completed_datetime: 2020-12-22 22:10:40
+
+two:
+  user: two
+  product: two
+  completed: false
+  completed_datetime: 2020-12-22 22:10:40
