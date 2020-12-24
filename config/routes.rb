@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get 'api/v1
   resources :quiz_questions
   resources :quizzes
   resources :favorite_posts

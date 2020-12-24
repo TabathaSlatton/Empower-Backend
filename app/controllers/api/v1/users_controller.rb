@@ -14,9 +14,9 @@ class Api::V1::UsersController < ApplicationController
         # passing encode_token a payload of user id
         @token = encode_token(user_id: @user.id)
         # using built-in rails status codes
-        render json: { user: UserSerializer.new(@user), jwt: @token }, status: :created
+        render json: { user: UserSerializer.new(@user), token: @token }, status: :created
       else
-        render json: { error: 'failed to create user' }, status: :not_acceptable
+        render json: { error: user.errors.full_messages.to_sentence }, status: :not_acceptable
       end
     end
     
