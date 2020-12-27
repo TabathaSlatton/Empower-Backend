@@ -15,7 +15,7 @@ class WishItemsController < ApplicationController
 
   # POST /wish_items
   def create
-    @wish_item = WishItem.new(wish_item_params)
+    @wish_item = session_user.wish_items.new(wish_item_params)
 
     if @wish_item.save
       render json: @wish_item, status: :created, location: @wish_item

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       post '/login', to: 'auth#create'
       get '/profile', to: 'users#profile'
+      post '/autologin', to: 'auth#autologin'
     end
   end
 end

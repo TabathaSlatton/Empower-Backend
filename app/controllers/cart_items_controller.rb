@@ -15,7 +15,7 @@ class CartItemsController < ApplicationController
 
   # POST /cart_items
   def create
-    @cart_item = CartItem.new(cart_item_params)
+    @cart_item = session_user.cart_items.new(cart_item_params)
 
     if @cart_item.save
       render json: @cart_item, status: :created, location: @cart_item

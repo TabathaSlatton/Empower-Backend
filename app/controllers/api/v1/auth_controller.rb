@@ -1,5 +1,5 @@
 class Api::V1::AuthController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    skip_before_action :authorized, only: [:create, :autologin]
   
     # login functionality from backend
     def create
@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApplicationController
       # User#authenticate comes from BCrypt
       if @user && @user.authenticate(user_login_params[:password])
         # encode token comes from ApplicationController
-        token = encode_token({ user_id: @user.id })
+        token = encode_token(@user.id)
         render json: { user: UserSerializer.new(@user), token: token }, status: :accepted
       else
         render json: { errors: 'Invalid email or password' }, status: :unauthorized
@@ -15,12 +15,12 @@ class Api::V1::AuthController < ApplicationController
     end
 
     def autologin
-      user = session_user
+     user = session_user
       if user
         token = encode_token(user.id)
         render json: {user: UserSerializer.new(user), token: token}
       else
-        render json: {errors: "Error with localStorage"}
+        render json: { errors: "Error with localStorage"}
       end
     end
   

@@ -12,7 +12,7 @@ class Api::V1::UsersController < ApplicationController
       @user = User.create(user_params)
       if @user.valid?
         # passing encode_token a payload of user id
-        @token = encode_token(user_id: @user.id)
+        @token = encode_token(@user.id)
         # using built-in rails status codes
         render json: { user: UserSerializer.new(@user), token: @token }, status: :created
       else

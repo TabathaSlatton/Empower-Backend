@@ -15,7 +15,7 @@ class PostsController < ApplicationController
 
   # POST /posts
   def create
-    @post = Post.new(post_params)
+    @post = session_user.posts.new(post_params)
 
     if @post.save
       render json: @post, status: :created, location: @post
