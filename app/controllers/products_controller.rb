@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  skip_before_action :authorized
+  # skip_before_action :authorized
 
   # GET /products
   def index

@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-    skip_before_action :authorized, only: [:create]
+    # skip_before_action :authorized, only: [:create]
 
 
     # allows authenticated user to access profile information
@@ -14,6 +14,17 @@ class Api::V1::UsersController < ApplicationController
         # passing encode_token a payload of user id
         @token = encode_token(@user.id)
         # using built-in rails status codes
+        render json: { user: UserSerializer.new(@user), token: @token }, status: :created
+      else
+        render json: { error: user.errors.full_messages.to_sentence }, status: :not_acceptable
+      end
+    end
+
+
+    def update
+      @user = User.find(params[:id])
+      if @user.update(user_params)
+        @token = encode_token(@user.id)
         render json: { user: UserSerializer.new(@user), token: @token }, status: :created
       else
         render json: { error: user.errors.full_messages.to_sentence }, status: :not_acceptable
