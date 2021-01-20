@@ -1,6 +1,6 @@
 # React, Redux, and Rails Project
 
-[Watch this video to understand how this app works!](https://youtu.be/8e2FPZyeSZU)
+[Watch this video to understand how this app works!](https://youtu.be/r0oKpPEYReE)
 
 ## Built With
 
